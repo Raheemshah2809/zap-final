@@ -20,7 +20,7 @@ function upload() {
                 } else {
                     alert("Successfully uploaded");
                     document.getElementById('post-form').reset();
-                    getdata();
+                    
                     
                 }
             });
@@ -32,7 +32,7 @@ function upload() {
 
 
 window.onload = function () {
-    this.getdata();
+    getdata();
 }
 
 
