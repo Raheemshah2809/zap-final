@@ -29,13 +29,6 @@ function upload() {
 
 }
 
-
-
-window.onload = function () {
-    getdata();
-}
-
-
 function getdata() {
     firebase.database().ref('blogs/').once('value').then(function (snapshot) {
         //get your posts div
@@ -47,20 +40,24 @@ function getdata() {
         console.log(data);
         for (let [key, value] of Object.entries(data)) {
             posts_div.innerHTML = "<div class='col-sm-4 mt-2 mb-1'>" +
-                "<div class='card'>" +
-                "<img src='" + value.imageURL + "' style='height:250px;'>" +
-                "<div class='card-body'><p class='card-text'>" + value.text + "</p>" +
-                "<button class='btn btn-danger' id='" + key + "' onclick='delete_post(this.id)'>Delete</button>" +
-                "</div></div></div>" + posts_div.innerHTML;
+            "<div class='card'>" +
+            "<img src='" + value.imageURL + "' style='height:250px;'>" +
+            "<div class='card-body'><p class='card-text'>" + value.text + "</p>" +
+            "<button class='btn btn-danger' id='" + key + "' onclick='delete_post(this.id)'>Delete</button>" +
+            "</div></div></div>" + posts_div.innerHTML;
         }
-
-    });
+        
+    })
 }
 
 function delete_post(key) {
     firebase.database().ref('blogs/' + key).remove();
     getdata();
-
+    
 }
 
+window.onload = function () {
+    getdata();
+}
 
+console.log("gotr here??")
