@@ -46,11 +46,12 @@ form {
 
 #myProgress {
   width: 100%;
-  background-color: grey;
+  background-color: rgb(255, 255, 255);
 }
 
 #myBar {
   width: 1%;
-  height: 30px;
-  background-color: green;
+  height: 5px;
+  background-color: rgb(11, 222, 183);
+  color: white;
 }

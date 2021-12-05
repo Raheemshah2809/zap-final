@@ -20,9 +20,6 @@ function upload() {
                     alert("Successfully uploaded");
                     document.getElementById('post-form').reset();
                     location.reload();
-
-
-
                 }
             });
         });
@@ -33,10 +30,10 @@ function upload() {
     function move(snapshot) {
         if (i == 0) {
             i = 1;
-            var elem = document.getElementById("myBar");
+            var elem = document.getElementById("myBar"); //remember this is the id of the progress bar
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             var width = 1;
-            var id = setInterval(frame, 10);
+            var id = setInterval(upload , 5);
 
             function upload() {
                 if (width >= progress) {
@@ -51,6 +48,7 @@ function upload() {
 
         }
     }
+}
 
     function getdata() {
         firebase.database().ref('blogs/').once('value').then(function (snapshot) {
@@ -85,4 +83,3 @@ function upload() {
 
 
     console.log("gotr here??");
-}
