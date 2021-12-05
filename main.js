@@ -5,8 +5,7 @@ function upload() {
     var storageRef = firebase.storage().ref('images/' + imageName);
     var uploadTask = storageRef.put(image);
     uploadTask.on('state_changed', function (snapshot) {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("upload is " + progress + " done");
+        move(snapshot)
     }, function (error) {
         console.log(error.message);
     }, function () {
@@ -20,44 +19,70 @@ function upload() {
                 } else {
                     alert("Successfully uploaded");
                     document.getElementById('post-form').reset();
-                    
-                    
+                    location.reload();
+
+
+
                 }
             });
         });
     });
 
-}
+    var i = 0;
 
-function getdata() {
-    firebase.database().ref('blogs/').once('value').then(function (snapshot) {
-        //get your posts div
-        var posts_div = document.getElementById('posts');
-        //remove all remaining data in that div
-        posts.innerHTML = "";
-        //get data from firebase
-        var data = snapshot.val();
-        console.log(data);
-        for (let [key, value] of Object.entries(data)) {
-            posts_div.innerHTML = "<div class='col-sm-4 mt-2 mb-1'>" +
-            "<div class='card'>" +
-            "<img src='" + value.imageURL + "' style='height:250px;'>" +
-            "<div class='card-body'><p class='card-text'>" + value.text + "</p>" +
-            "<button class='btn btn-danger' id='" + key + "' onclick='delete_post(this.id)'>Delete</button>" +
-            "</div></div></div>" + posts_div.innerHTML;
+    function move(snapshot) {
+        if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            var width = 1;
+            var id = setInterval(frame, 10);
+
+            function upload() {
+                if (width >= progress) {
+                    clearInterval(id);
+                    i = 0;
+                } else {
+                    width++;
+                    elem.style.width = width + '%';
+                    elem.innerHTML = width * 1 + '%';
+                }
+            }
+
         }
-        
-    })
-}
+    }
 
-function delete_post(key) {
-    firebase.database().ref('blogs/' + key).remove();
-    getdata();
-    
-}
+    function getdata() {
+        firebase.database().ref('blogs/').once('value').then(function (snapshot) {
+            //get your posts div
+            var posts_div = document.getElementById('posts');
+            //remove all remaining data in that div
+            posts.innerHTML = "";
+            //get data from firebase
+            var data = snapshot.val();
+            console.log(data);
+            for (let [key, value] of Object.entries(data)) {
+                posts_div.innerHTML = "<div class='col-sm-4 mt-2 mb-1'>" +
+                    "<div class='card'>" +
+                    "<img src='" + value.imageURL + "' style='height:250px;'>" +
+                    "<div class='card-body'><p class='card-text'>" + value.text + "</p>" +
+                    "<button class='btn btn-danger' id='" + key + "' onclick='delete_post(this.id)'>Delete</button>" +
+                    "</div></div></div>" + posts_div.innerHTML;
+            }
 
-window.onload = function () {
-    getdata();
-}
+        })
+    }
 
-console.log("gotr here??")
+    function delete_post(key) {
+        firebase.database().ref('blogs/' + key).remove();
+        getdata();
+
+    }
+
+    window.onload = function () {
+        getdata();
+    }
+
+
+    console.log("gotr here??");
+}

@@ -40,10 +40,9 @@ const geolocate = function () {
     };
 
     const error = () => {
-        $status.html('Unable to retrieve your location. This may be due to your browser security settings or a known Chrome issue with embedded iframes').show();
+        $status.html('Unable to retrieve your location. This may be due to your browser security settings').show();
         $trigger.html("Use").click(function (e) {
             e.preventDefault();
-            window.open('https://codepen.io/bmarshall511/full/rZMbey', '_blank');
         });
     };
 
@@ -61,11 +60,3 @@ $("#trigger").click(() => {
     geolocate();
 });
 
-var player = document.getElementById('player');
-var snapshotCanvas = document.getElementById('snapshot');
-var captureButton = document.getElementById('capture');
-
-var handleSuccess = function (stream) {
-    // Attach the video stream to the video element and autoplay.
-    player.srcObject = stream;
-};
