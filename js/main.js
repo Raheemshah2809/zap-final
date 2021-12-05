@@ -33,7 +33,7 @@ function upload() {
             var elem = document.getElementById("myBar"); //remember this is the id of the progress bar
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             var width = 1;
-            var id = setInterval(upload , 5);
+            var id = setInterval(upload , 10);
 
             function upload() {
                 if (width >= progress) {
@@ -82,4 +82,11 @@ function upload() {
     }
 
 
-    console.log("gotr here??");
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+          navigator.serviceWorker
+            .register("/serviceWorker.js")
+            .then(res => console.log("service worker registered"))
+            .catch(err => console.log("service worker not registered", err))
+        })
+      }

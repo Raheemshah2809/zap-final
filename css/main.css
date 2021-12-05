@@ -50,8 +50,8 @@ form {
 }
 
 #myBar {
-  width: 1%;
-  height: 5px;
+  width: 0%;
+  height: 20px;
   background-color: rgb(11, 222, 183);
   color: white;
 }
