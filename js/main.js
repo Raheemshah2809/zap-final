@@ -10,9 +10,13 @@ function upload() {
         console.log(error.message);
     }, function () {
         uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            const lat = document.querySelector('#latitude').innerText;
+            const lon = document.querySelector('#longitude').innerText;
             firebase.database().ref('blogs/').push().set({
                 text: post,
-                imageURL: downloadURL
+                imageURL: downloadURL,
+                isAlive: document.querySelector('#livingStatus').value,
+                geoLoc: lat + ", " + lon
             }, function (error) {
                 if (error) {
                     alert("Error while uploading");
@@ -62,6 +66,8 @@ function upload() {
             for (let [key, value] of Object.entries(data)) {
                 posts_div.innerHTML = "<div class='col-sm-4 mt-2 mb-1'>" +
                     "<div class='card'>" +
+                    "<h4>" + value.isAlive + "</h4>" + 
+                    "<h4>"+ value.geoLoc + "</h4>" +
                     "<img src='" + value.imageURL + "' style='height:250px;'>" +
                     "<div class='card-body'><p class='card-text'>" + value.text + "</p>" +
                     "<button class='btn btn-danger' id='" + key + "' onclick='delete_post(this.id)'>Delete</button>" +

@@ -10,7 +10,7 @@
     <link rel="manifest" href="manifest.json" />
     <!-- ios support -->
     <link rel='icon' sizes='192x192' href='/images/touch/android-launchericon-192-192.png'>
-    <link rel='apple-touch-icon'  href='/images/touch/android-launchericon-192-192.png'>
+    <link rel='apple-touch-icon' href='/images/touch/android-launchericon-192-192.png'>
     <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
     <meta name="theme-color" content="#db4938" />
     <title>Zap App</title>
@@ -25,7 +25,6 @@
                     <div class="wrapper">
                         <h1 class="title">Upload and GeoTag Your Image</h1>
                         <div id="status"></div>
-                        <button id="trigger">Show my location</button>
 
                         <div class="results">
                             <div class="result">
@@ -45,7 +44,6 @@
                     </div>
                 </div>
         </section>
-
         <div class="container mt-2">
             <div class="card">
                 <div class="card-body">
@@ -54,6 +52,10 @@
                         <textarea id="post" class="form-control"
                             placeholder="Please include a description of the animal, whether It is Dead Or Alive"></textarea>
                         <input type="file" class="form-control" id="image" accept="images/*">
+                        <select id="livingStatus">
+                            <option value="alive" selected>Alive</option>
+                            <option value="dead">Dead</option>
+                        </select>
                         <br>
                         <div class="text-center">
                             <button type="button" class="btn btn-success" onclick="upload()">Upload</button>

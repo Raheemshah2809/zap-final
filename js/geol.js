@@ -56,7 +56,4 @@ const geolocate = function () {
     }
 };
 
-$("#trigger").click(() => {
-    geolocate();
-});
-
+window.onload(geolocate());
