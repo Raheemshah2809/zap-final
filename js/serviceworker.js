@@ -2,9 +2,8 @@ const zapapp = "zap-app-v1"
 const assets = [
   "/",
   "/index.html",
-  "/css/style.css",
-  "/js/main.js",
-  "/js/geol.js",
+  "/css/*",
+  "/js/*",
 ]
 
 self.addEventListener("install", installEvent => {
