@@ -9,9 +9,7 @@ body {
   padding: 0;
   font-family: 'Arial', sans-serif;
   background-color: rgb(255, 255, 255);
-  border-left: 0.5rem solid #0985e4;
-  border-right: 0.5rem solid #0985e4;
-
+  border: 0.5rem solid #0985e4;
 }
 
 
@@ -153,4 +151,17 @@ form {
 
 .dropdown .dropdown-menu li:active {
   background-color: #e2e2e2
+}
+
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.top{
+  margin-top: 2rem;
+  text-align: center;
+  display: block;
 }
