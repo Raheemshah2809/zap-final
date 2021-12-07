@@ -74,7 +74,7 @@ function getdata() {
                 "<h4>" + value.geoLoc + "</h4>" +
                 "<h4> Time stamp: " + value.timestamp + "</h4>" +
                 "<h4>" + value.typeDeath + "</h4>" +
-                "<img src='" + value.imageURL + "' style='height:250px;'>" +
+                "<img src='" + value.imageURL + "'/>" +
                 "<div class='card-body'><p class='card-text'>" + value.text + "</p>" +
                 "<button class='btn btn-danger' id='" + key + "' onclick='delete_post(this.id)'>Delete</button>" +
                 "</div></div></div>" + posts_div.innerHTML;
