@@ -101,3 +101,22 @@ if ("serviceWorker" in navigator) {
             .catch(err => console.log("service worker not registered", err))
     })
 }
+
+const update = document.getElementById('Update');
+
+if (navigator.onLine) {
+    Update.textContent = 'You are online';
+    Update.style.color = 'green';
+}
+
+// Add Event Listeners
+
+window.addEventListener('online', function () {
+    Update.textContent = 'You are online';
+    Update.style.color = 'green';
+})
+
+window.addEventListener('offline', function () {
+    Update.textContent = 'You are offline :(';
+    Update.style.color = 'red';
+})
