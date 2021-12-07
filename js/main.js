@@ -12,7 +12,6 @@ function upload() {
         uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
             const lat = document.querySelector('#latitude').innerText;
             const lon = document.querySelector('#longitude').innerText;
-            const altitude = document.querySelector('#altitude').innerText;
             const typeDeath = document.querySelector('#typeDeath').value;
             firebase.database().ref('blogs/').push().set({
                 text: post,
@@ -20,7 +19,6 @@ function upload() {
                 typeDeath: typeDeath,
                 isAlive: document.querySelector('#livingStatus').value,
                 geoLoc: lat + ", " + lon,
-                altitude: altitude,
             }, function (error) {
                 if (error) {
                     alert("Error while uploading");

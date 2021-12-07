@@ -15,7 +15,7 @@ const geolocate = function () {
         const longitude = position.coords.longitude;
         const speed = position.coords.speed ? position.coords.speed : "N/A";
         const heading = position.coords.heading ? position.coords.heading : "N/A";
-        const altitude = position.coords.altitude;
+        const altitude = position.coords.altitude ? position.coords.altitude : "N/A";
         const accuracy = (position.coords.accuracy / 1609).toFixed(3);
         const altitudeAccuracy = (position.coords.altitudeAccuracy / 1609).toFixed(3);
 
