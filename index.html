@@ -7,9 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="manifest" href="manifest.json" />
-    <link rel='icon' sizes='192x192' href='/images/touch/android-launchericon-192-192.png'>
-    <link rel='apple-touch-icon' href='/images/touch/android-launchericon-192-192.png'>
     <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
     <meta name="theme-color" content="#db4938" />
     <title>Zap App</title>
@@ -44,6 +41,9 @@
                                     <label>Longitude</label>
                                     <div id="longitude"></div>
                                 </div>
+                                <div class="result">
+                                    <label >Timestamp</label>
+                                    <div id="timestamp"></div>
                             </div>
                         </div>
                         <br>
@@ -56,7 +56,7 @@
                         <br>
                         <h4 class="alive1">Type Of Mortality</h4>
                         <select id="typeDeath" class="dropdown" required>
-                            <option value="Not Sure" selected>Not Sure</option>
+                            <option value="Not Sure" selected>Not Applicable</option>
                             <option value="Death: Natural" selected>Natural</option>
                             <option value="Death: Road" selected>Road Death</option>
                             <option value="Death: Electrocution">Fence Death: Electrocution</option>
@@ -80,16 +80,11 @@
                             <div id="myBar"></div>
                         </div>
                     </form>
-
                 </div>
-
             </div>
             <div class="row mt-4" id="posts">
-
             </div>
-
         </div>
-
 
     </main>
     <script src="js/jquery.min.js"></script>

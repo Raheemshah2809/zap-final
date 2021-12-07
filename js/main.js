@@ -13,10 +13,12 @@ function upload() {
             const lat = document.querySelector('#latitude').innerText;
             const lon = document.querySelector('#longitude').innerText;
             const typeDeath = document.querySelector('#typeDeath').value;
+            const timestamp = document.querySelector('#timestamp').innerText;
             firebase.database().ref('blogs/').push().set({
                 text: post,
                 imageURL: downloadURL,
                 typeDeath: typeDeath,
+                timestamp: timestamp,
                 isAlive: document.querySelector('#livingStatus').value,
                 geoLoc: lat + ", " + lon,
             }, function (error) {
@@ -70,6 +72,7 @@ function getdata() {
                 "<div class='card'>" +
                 "<h4>" + value.isAlive + "</h4>" +
                 "<h4>" + value.geoLoc + "</h4>" +
+                "<h4> Time stamp: " + value.timestamp + "</h4>" +
                 "<h4>" + value.typeDeath + "</h4>" +
                 "<img src='" + value.imageURL + "' style='height:250px;'>" +
                 "<div class='card-body'><p class='card-text'>" + value.text + "</p>" +
