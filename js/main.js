@@ -12,11 +12,15 @@ function upload() {
         uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
             const lat = document.querySelector('#latitude').innerText;
             const lon = document.querySelector('#longitude').innerText;
+            const altitude = document.querySelector('#altitude').innerText;
+            const typeDeath = document.querySelector('#typeDeath').value;
             firebase.database().ref('blogs/').push().set({
                 text: post,
                 imageURL: downloadURL,
+                typeDeath: typeDeath,
                 isAlive: document.querySelector('#livingStatus').value,
-                geoLoc: lat + ", " + lon
+                geoLoc: lat + ", " + lon,
+                altitude: altitude,
             }, function (error) {
                 if (error) {
                     alert("Error while uploading");
@@ -37,7 +41,7 @@ function upload() {
             var elem = document.getElementById("myBar"); //remember this is the id of the progress bar
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             var width = 1;
-            var id = setInterval(upload , 10);
+            var id = setInterval(upload, 10);
 
             function upload() {
                 if (width >= progress) {
@@ -54,45 +58,46 @@ function upload() {
     }
 }
 
-    function getdata() {
-        firebase.database().ref('blogs/').once('value').then(function (snapshot) {
-            //get your posts div
-            var posts_div = document.getElementById('posts');
-            //remove all remaining data in that div
-            posts.innerHTML = "";
-            //get data from firebase
-            var data = snapshot.val();
-            console.log(data);
-            for (let [key, value] of Object.entries(data)) {
-                posts_div.innerHTML = "<div class='col-sm-4 mt-2 mb-1'>" +
-                    "<div class='card'>" +
-                    "<h4>" + value.isAlive + "</h4>" + 
-                    "<h4>"+ value.geoLoc + "</h4>" +
-                    "<img src='" + value.imageURL + "' style='height:250px;'>" +
-                    "<div class='card-body'><p class='card-text'>" + value.text + "</p>" +
-                    "<button class='btn btn-danger' id='" + key + "' onclick='delete_post(this.id)'>Delete</button>" +
-                    "</div></div></div>" + posts_div.innerHTML;
-            }
+function getdata() {
+    firebase.database().ref('blogs/').once('value').then(function (snapshot) {
+        //get your posts div
+        var posts_div = document.getElementById('posts');
+        //remove all remaining data in that div
+        posts.innerHTML = "";
+        //get data from firebase
+        var data = snapshot.val();
+        console.log(data);
+        for (let [key, value] of Object.entries(data)) {
+            posts_div.innerHTML = "<div class='col-sm-4 mt-2 mb-1'>" +
+                "<div class='card'>" +
+                "<h4>" + value.isAlive + "</h4>" +
+                "<h4>" + value.geoLoc + "</h4>" +
+                "<h4>" + value.typeDeath + "</h4>" +
+                "<img src='" + value.imageURL + "' style='height:250px;'>" +
+                "<div class='card-body'><p class='card-text'>" + value.text + "</p>" +
+                "<button class='btn btn-danger' id='" + key + "' onclick='delete_post(this.id)'>Delete</button>" +
+                "</div></div></div>" + posts_div.innerHTML;
+        }
 
-        })
-    }
+    })
+}
 
-    function delete_post(key) {
-        firebase.database().ref('blogs/' + key).remove();
-        getdata();
+function delete_post(key) {
+    firebase.database().ref('blogs/' + key).remove();
+    getdata();
 
-    }
+}
 
-    window.onload = function () {
-        getdata();
-    }
+window.onload = function () {
+    getdata();
+}
 
 
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function() {
-          navigator.serviceWorker
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker
             .register("./js/serviceWorker.js")
             .then(res => console.log("service worker registered"))
             .catch(err => console.log("service worker not registered", err))
-        })
-      }
+    })
+}

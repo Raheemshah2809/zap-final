@@ -8,7 +8,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <link rel="manifest" href="manifest.json" />
-    <!-- ios support -->
     <link rel='icon' sizes='192x192' href='/images/touch/android-launchericon-192-192.png'>
     <link rel='apple-touch-icon' href='/images/touch/android-launchericon-192-192.png'>
     <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
@@ -21,41 +20,57 @@
         <section class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Zap App</h1>
-                    <div class="wrapper">
-                        <h1 class="title">Upload and GeoTag Your Image</h1>
-                        <div id="status"></div>
-
-                        <div class="results">
-                            <div class="result">
-                                <label>Accuracy</label>
-                                <div id="accuracy"></div>
-                            </div>
-                            <div class="result">
-                                <label>Latitude</label>
-                                <div id="latitude"></div>
-                            </div>
-                            <div class="result">
-                                <label>Longitude</label>
-                                <div id="longitude"></div>
-                            </div>
-
-                        </div>
-                    </div>
+                    <h1 class="header1">Zap App</h1>
                 </div>
         </section>
         <div class="container mt-2">
             <div class="card">
+                <h3>Document Your Find</h3>
                 <div class="card-body">
                     <form id="post-form">
-                        <h3>Document Your Find</h3>
-                        <textarea id="post" class="form-control"
-                            placeholder="Please include a description of the animal, whether It is Dead Or Alive"></textarea>
-                        <input type="file" class="form-control" id="image" accept="images/*">
-                        <select id="livingStatus">
-                            <option value="alive" selected>Alive</option>
-                            <option value="dead">Dead</option>
+                        <h3>Location</h3>
+                        <div class="wrapper">
+                            <div id="status"></div>
+                            <div class="results">
+                                <div class="result">
+                                    <label>Accuracy</label>
+                                    <div id="accuracy"></div>
+                                </div>
+                                <div class="result">
+                                    <label>Latitude</label>
+                                    <div id="latitude"></div>
+                                </div>
+                                <div class="result">
+                                    <label>Longitude</label>
+                                    <div id="longitude"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <h4 class="alive1">Select If The Animal Is Dead Or Alive</h4>
+                        <select id="livingStatus" class="dropdown" required>
+                            <option value="Alive" selected>Alive</option>
+                            <option value="Dead">Dead</option>
                         </select>
+                        <br>
+                        <br>
+                        <h4 class="alive1">Type Of Mortality</h4>
+                        <select id="typeDeath" class="dropdown" required>
+                            <option value="Not Sure" selected>Not Sure</option>
+                            <option value="Death: Natural" selected>Natural</option>
+                            <option value="Death: Road" selected>Road Death</option>
+                            <option value="Death: Electrocution">Fence Death: Electrocution</option>
+                            <option value="Death: Non-Electrocution">Fence Death: Non-Electrocution</option>
+                            <option value="Death: Burning">Burning</option>
+                            <option value="Death: Other">Other</option>
+                        </select>
+                        <br>
+                        <br>
+                        <textarea id="post" class="form-control" required
+                            placeholder="If Other Please State How If Not Please Type N/A"></textarea>
+                        <input type="file" class="form-control" id="image" accept="images/*">
+                        <br>
+                        <br>
                         <br>
                         <div class="text-center">
                             <button type="button" class="btn btn-success" onclick="upload()">Upload</button>
