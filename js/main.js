@@ -117,6 +117,6 @@ window.addEventListener('online', function () {
 })
 
 window.addEventListener('offline', function () {
-    Update.textContent = 'You are offline :(';
+    Update.textContent = 'You are offline';
     Update.style.color = 'red';
 })
