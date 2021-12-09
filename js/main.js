@@ -14,7 +14,7 @@ function upload() {
             const lon = document.querySelector('#longitude').innerText;
             const typeDeath = document.querySelector('#typeDeath').value;
             const timestamp = document.querySelector('#timestamp').innerText;
-            firebase.database().ref('blogs/').push().set({
+            firebase.database().ref('thepost/').push().set({
                 text: post,
                 imageURL: downloadURL,
                 typeDeath: typeDeath,
@@ -38,7 +38,7 @@ function upload() {
     function move(snapshot) {
         if (i == 0) {
             i = 1;
-            var elem = document.getElementById("myBar"); //remember this is the id of the progress bar
+            var elem = document.getElementById("myBar");
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             var width = 1;
             var id = setInterval(upload, 10);
@@ -59,7 +59,7 @@ function upload() {
 }
 
 function getdata() {
-    firebase.database().ref('blogs/').once('value').then(function (snapshot) {
+    firebase.database().ref('thepost/').once('value').then(function (snapshot) {
         //get your posts div
         var posts_div = document.getElementById('posts');
         //remove all remaining data in that div
@@ -84,7 +84,7 @@ function getdata() {
 }
 
 function delete_post(key) {
-    firebase.database().ref('blogs/' + key).remove();
+    firebase.database().ref('thepost/' + key).remove();
     getdata();
 
 }
