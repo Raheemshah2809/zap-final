@@ -2,8 +2,6 @@
     const $status = $("#status");
     const $latitude = $("#latitude");
     const $longitude = $("#longitude");
-    const $heading = $("#heading");
-    const $speed = $("#speed");
     const $altitude = $("#altitude");
     const $accuracy = $("#accuracy");
     const $altitudeAccuracy = $("#altitudeAccuracy");
@@ -14,8 +12,6 @@
     const success = (position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        const speed = position.coords.speed ? position.coords.speed : "N/A";
-        const heading = position.coords.heading ? position.coords.heading : "N/A";
         const altitude = position.coords.altitude ? position.coords.altitude : "N/A";
         const timestamp = new Date(+position.timestamp).toUTCString()
         const accuracy = (position.coords.accuracy / 1609).toFixed(3);
@@ -23,8 +19,6 @@
 
         $latitude.html(latitude + "&deg;");
         $longitude.html(longitude + "&deg;");
-        $heading.html(heading);
-        $speed.html(speed);
         $timestamp.html(timestamp);
         $altitude.html(altitude);
         $accuracy.html(accuracy + " mile" + (accuracy > 1 ? "s" : ""));
